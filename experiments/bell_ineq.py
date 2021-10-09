@@ -374,7 +374,7 @@ def job_ids_to_result(job_ids, device):
     """
     result_list = []
     for job_id in job_ids:
-        result_list += device.retrieve_job(job_id).result()
+        result_list.append(device.retrieve_job(job_id).result())
     return result_list
 
 
