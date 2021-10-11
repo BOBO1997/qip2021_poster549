@@ -1,6 +1,6 @@
 # Templates Folder
 
-## brooklyn_star
+## Jupyter Notebooks
 
 - Running star graphs on ibmq_brooklyn.
 Program is located in [brooklyn_star.ipynb](https://github.com/BOBO1997/qip2021_poster549/blob/main/templates/brooklyn_star.ipynb)
