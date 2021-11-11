@@ -7,7 +7,9 @@ These programs computes the quantum correlation of star graph states and path gr
 ## Templates folder
 
 The simplified and understandable program.
+Please use these programs for replication.
 
 ## Experiments folder
 
-Raw program for experiments
+Raw programs for experiments.
+The results are ahead of currently published preprint on arXiv.
