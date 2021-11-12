@@ -13,3 +13,6 @@ Please use these programs for replication.
 
 Raw programs for experiments.
 The results are ahead of currently published preprint on arXiv.
+
+Since the qiskit library is evolving so fast, some code may not work as expected.
+For new implementation, please see the source code in templates folder.
