@@ -44,8 +44,7 @@ def analyze_circuits_tensored(adj_lists, counts_dict_list, tensored_meas_mitigat
         tt1 = time.time()
         if tensored_meas_mitigator_list is not None:
             # n = 2 -> 0, n = 10 -> 16
-            counts = tensored_meas_mitigator_list[n -
-                                                  2].apply(counts_dict_list[2 * (n - 2)])
+            counts = tensored_meas_mitigator_list[n - 2].apply(counts_dict_list[2 * (n - 2)])
         else:
             counts = counts_dict_list[2 * (n - 2)]
         tt2 = time.time()
@@ -63,8 +62,7 @@ def analyze_circuits_tensored(adj_lists, counts_dict_list, tensored_meas_mitigat
         tt1 = time.time()
         if tensored_meas_mitigator_list is not None:
             # n = 2 -> 1, n = 10 -> 17
-            counts = tensored_meas_mitigator_list[n -
-                                                  2].apply(counts_dict_list[2 * (n - 2) + 1])
+            counts = tensored_meas_mitigator_list[n - 2].apply(counts_dict_list[2 * (n - 2) + 1])
         else:
             counts = counts_dict_list[2 * (n - 2) + 1]
         tt2 = time.time()

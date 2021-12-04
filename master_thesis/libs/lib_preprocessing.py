@@ -55,3 +55,17 @@ def arrange_results_list_tensored(results_list):
             results_meas_cal.append(merge_results(results_list[pos:pos + 2]))
             pos += 2
     return results_graph_states, results_meas_cal
+
+
+def arrange_results_list_tensored3(results_list):
+
+    assert len(results_list) % 3 == 0
+    pos = 0
+    results_graph_states = []
+    results_meas_cal = []
+    for i in range(len(results_list) // 3):
+        results_graph_states += results_list[pos:pos + 1]
+        pos += 1
+        results_meas_cal.append(merge_results(results_list[pos:pos + 2]))
+        pos += 2
+    return results_graph_states, results_meas_cal

@@ -43,8 +43,21 @@ def extract_sub_counts(counts_xz, counts_zx, center, n):
 def compute_stddev_of_grouping(stddevs):
     return np.sqrt(sum([stddev ** 2 for stddev in stddevs]))
 
+def mitigate_counts(counts_dict_list, meas_fitter_list, limit=100):
+    times = []
+    mitigated_counts_dict_list = []
+    for counts_dict in counts_dict_list:
+        n = len(list(counts_dict.keys())[0])
+        if n <= 1:
+            print("skipped\n")
+        counts_xz = meas_fitter_list[n - 2].apply(counts_dict_list[2 * (n - 2)])
+        counts_zx = meas_fitter_list[n - 2].apply(counts_dict_list[2 * (n - 2) + 1])
+        mitigated_counts_dict_list += [counts_xz, counts_zx]
+    return mitigated_counts_dict_list, times
 
-def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list, tensored_meas_mitigator_list=None, limit=100):
+
+
+def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list):
     """
     Input
         adj_lists         : list of adjacency list
@@ -61,10 +74,7 @@ def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list, tensored_meas_mit
     corr_all_list, stddev_all_list, Es_all_list, Ds_all_list = [], [], [], []
 
     for adj_list, F in zip(adj_lists, Fs):
-        t1 = time.time()
         n = len(adj_list)
-        if n > limit:
-            break
         print("graph size:", len(adj_list))
         if n <= 1:
             print("skipped\n")
@@ -74,30 +84,13 @@ def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list, tensored_meas_mit
             Ds_all_list.append([])
             continue
 
+        # XZXZXZXZ
+        counts_xz = counts_dict_list[2 * (n - 2)]
+        # ZXZXZXZX
+        counts_zx = counts_dict_list[2 * (n - 2) + 1]
+
         Es_F, Ds_F, corr_F = [], [], 0
         remaining = remaining_vertices(adj_list, n, F)
-
-        # XZXZXZXZ
-        tt1 = time.time()
-        if tensored_meas_mitigator_list is not None:
-            # n = 2 -> 0, n = 10 -> 16
-            counts_xz = tensored_meas_mitigator_list[n -
-                                                     2].apply(counts_dict_list[2 * (n - 2)])
-        else:
-            counts_xz = counts_dict_list[2 * (n - 2)]
-        tt2 = time.time()
-        print(tt2 - tt1, "s")
-
-        # ZXZXZXZX
-        tt1 = time.time()
-        if tensored_meas_mitigator_list is not None:
-            # n = 2 -> 1, n = 10 -> 17
-            counts_zx = tensored_meas_mitigator_list[n -
-                                                     2].apply(counts_dict_list[2 * (n - 2) + 1])
-        else:
-            counts_zx = counts_dict_list[2 * (n - 2) + 1]
-        tt2 = time.time()
-        print(tt2 - tt1, "s")
 
         for m in F:
             counts, poses = extract_sub_counts(counts_xz, counts_zx, m, n)
