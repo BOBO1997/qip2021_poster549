@@ -6,6 +6,8 @@
 
 #include "combinations.hpp"
 
+using namespace std;
+
 namespace libs_qrem {
 
 string change_bit_at_poses(string key, vector<int> poses) {
@@ -18,32 +20,44 @@ string change_bit_at_poses(string key, vector<int> poses) {
             key[pos] = '0';
         }
     }
-    return key
+    return key;
 }
 
 set<string> extend_keys(set<string> original_keys, int max_dist) {
     set<string> extended_key_set;
     for (const auto& key: original_keys) {
-        extended_key_set.insert(key)
-        int n = key.size()
+        extended_key_set.insert(key);
+        int n = key.size();
         for (int d = 0; d < max_dist; d++) {
-            vector<vector<int>> combs = combinations(n, d + 1)
+            vector< vector<int> > combs = combinations(n, d + 1);
             for (const auto& comb: combs) {
-                new_key = change_bit_at_poses(key, comb)
-                extended_key_set.insert(new_key)
+                string new_key = change_bit_at_poses(key, comb);
+                extended_key_set.insert(new_key);
             }
         }
     }
-    return extended_key_set
+    return extended_key_set;
 }
 
 vector<double> extended_vectors(map<string, double> y, map<string, int> keys_to_indices) {
-    vector<double> exteded_y(keys_to_indices.size(), 0);
+    vector<double> extended_y(keys_to_indices.size(), 0);
     for (const auto& item: y) {
-        extended_y[keys_to_indices[item.first]] = item.second
+        extended_y[keys_to_indices[item.first]] = item.second;
     }
     return extended_y;
 }
+
+void print_vec1d() {
+    vector<int> vec = vector<int>(5, 0);
+    for (int i = 0; i < 5; i++) {
+        vec[i] = i + 10;
+    }
+    for (int i = 0; i < 5; i++) {
+        cout << vec[vec.size() - 1 - i] << " ";
+    }
+    cout << endl;
+}
+
 
 }
 

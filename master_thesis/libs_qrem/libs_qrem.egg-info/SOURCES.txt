@@ -1,0 +1,8 @@
+setup.py
+./cython/hamming.cpp
+./libcpp/combinations.cpp
+./libcpp/hamming.cpp
+libs_qrem.egg-info/PKG-INFO
+libs_qrem.egg-info/SOURCES.txt
+libs_qrem.egg-info/dependency_links.txt
+libs_qrem.egg-info/top_level.txt

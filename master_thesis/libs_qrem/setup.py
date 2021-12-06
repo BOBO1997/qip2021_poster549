@@ -4,16 +4,17 @@ from Cython.Distutils import build_ext
 
 ext_modules = [
     Extension(
-        "mitigation", sources=[
+        "libs_qrem", sources=[
             "./cython/hamming.pyx",
             "./libcpp/combinations.cpp",
+            "./libcpp/hamming.cpp"
         ],
         language="c++"
     )
 ]
 
 setup(
-    name="mitigation",
+    name="libs_qrem",
     cmdclass={"build_ext": build_ext},
     ext_modules=cythonize(ext_modules)
 )
