@@ -1,12 +1,13 @@
 from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
 from Cython.Distutils import build_ext
+from distutils.core import setup
 
 ext_modules = [
     Extension(
-        "hamming", 
+        "hamming",
         sources=[
-            "./cython/hamming.pyx",
+            "./libs_qrem/hamming.pyx",
             "./cpp/combinations.cpp",
             "./cpp/hamming.cpp"
         ],
@@ -16,7 +17,12 @@ ext_modules = [
 ]
 
 setup(
-    name="hamming",
+    name="libs_qrem",
     cmdclass={"build_ext": build_ext},
-    ext_modules=cythonize(ext_modules)
+    ext_modules=cythonize(ext_modules, language_level=3),
+    zip_safe=False,
+    packages=["libs_qrem"],
+    package_dir={
+        "libs_qrem": "libs_qrem"
+    },
 )
