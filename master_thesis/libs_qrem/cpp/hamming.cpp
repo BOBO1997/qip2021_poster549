@@ -5,6 +5,7 @@
 #include <string>
 
 #include "combinations.hpp"
+#include "hamming.hpp"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ set<string> extend_keys(set<string> original_keys, int max_dist) {
 }
 
 vector<double> extended_vectors(map<string, double> y, map<string, int> keys_to_indices) {
-    vector<double> extended_y(keys_to_indices.size(), 0);
+    vector<double> extended_y = vector<double>(keys_to_indices.size(), 0);
     for (const auto& item: y) {
         extended_y[keys_to_indices[item.first]] = item.second;
     }

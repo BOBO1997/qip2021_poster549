@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 
+#include "combinations.hpp"
+
 using namespace std;
 
 namespace libs_qrem {
