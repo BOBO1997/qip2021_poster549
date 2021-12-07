@@ -1,8 +1,0 @@
-setup.py
-./cpp/combinations.cpp
-./cpp/hamming.cpp
-./cython/hamming.cpp
-hamming.egg-info/PKG-INFO
-hamming.egg-info/SOURCES.txt
-hamming.egg-info/dependency_links.txt
-hamming.egg-info/top_level.txt

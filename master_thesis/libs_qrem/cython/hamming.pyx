@@ -22,13 +22,14 @@ cdef void print_set_of_string(set[string] s):
         print(i)
         print(ss)
 
-def test_extend_keys(key, max_dist):
-    cdef set[string] s = extend_keys(key, max_dist)
-    print(s)
+
+# def test_extend_keys(key, max_dist):
+#     cdef set[string] s = extend_keys(key, max_dist)
+#     print(s)
     # print_vec2d(vec2d)
-    print_set_of_string(s)
+#     print_set_of_string(s)
     # print_vec1d()
-    pass
+#     pass
 
 def aaa(key, max_dist):
     cdef set[string] s = extend_keys(key, max_dist)
