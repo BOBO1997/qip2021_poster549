@@ -57,7 +57,7 @@ def mitigate_counts(counts_dict_list, meas_fitter_list, limit=100):
 
 
 
-def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list):
+def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list, limit = 100):
     """
     Input
         adj_lists         : list of adjacency list
@@ -75,6 +75,8 @@ def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list):
 
     for adj_list, F in zip(adj_lists, Fs):
         n = len(adj_list)
+        if n > limit:
+            break
         print("graph size:", len(adj_list))
         if n <= 1:
             print("skipped\n")
